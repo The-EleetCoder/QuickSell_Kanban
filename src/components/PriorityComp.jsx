@@ -4,6 +4,10 @@ import "./PriorityComp.css";
 
 const PriorityComp = ({ data, filterValue}) => {
   const priorityArray = ["No priority", "Low", "Medium", "High", "Urgent"];
+  const availabilityObj = data?.users?.reduce((acc, user) => {
+    acc[user.id] = user.available;
+    return acc;
+  }, {});
   const sortData = (arr) => {
     arr.sort((a, b) => {
       if (filterValue == "priority") {
@@ -26,7 +30,7 @@ const PriorityComp = ({ data, filterValue}) => {
           <div className="main-card">
             <div className="main-card-header">
               <div className="header-left">
-                <img src="assets/signal-solid.svg" className="icon" />
+                <img src={`assets/${value}.png`} className="icon" />
                 <div>{value}</div>
                 <div>{taskCardCount}</div>
               </div>
@@ -47,6 +51,7 @@ const PriorityComp = ({ data, filterValue}) => {
                     id={ticket.id}
                     title={ticket.title}
                     tag={ticket.tag[0]}
+                    availability={availabilityObj[ticket.userId]}
                   />
                 </div>
               );

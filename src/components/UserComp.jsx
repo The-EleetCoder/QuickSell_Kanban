@@ -43,11 +43,12 @@ const UserComp = ({ data, filterValue }) => {
             {sortData(arr).map((ticket) => {
               return (
                 <div className="main-card-body">
-                  {console.log({ ticket })}
                   <TaskCard
                     id={ticket.id}
                     title={ticket.title}
                     tag={ticket.tag[0]}
+                    availability={user.available}  
+                    priority={ticket.priority}
                   />
                 </div>
               );

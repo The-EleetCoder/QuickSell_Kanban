@@ -7,7 +7,6 @@ import PriorityComp from "./components/PriorityComp";
 
 function App() {
   const [isDialogOpen, setDialogOpen] = useState(false);
-
   const [groupingValue, setGroupingValue] = useState(
     localStorage.getItem("groupingValue") || "status"
   );

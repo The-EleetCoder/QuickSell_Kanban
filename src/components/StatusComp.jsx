@@ -49,6 +49,7 @@ const StatusComp = ({ data, filterValue }) => {
                     id={ticket.id}
                     title={ticket.title}
                     tag={ticket.tag[0]}
+                    priority={ticket.priority}
                   />
                 </div>
               );
