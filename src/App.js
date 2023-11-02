@@ -7,8 +7,13 @@ import PriorityComp from "./components/PriorityComp";
 
 function App() {
   const [isDialogOpen, setDialogOpen] = useState(false);
-  const [groupingValue, setGroupingValue] = useState("status");
-  const [orderingValue, setOrderingValue] = useState("priority");
+
+  const [groupingValue, setGroupingValue] = useState(
+    localStorage.getItem("groupingValue") || "status"
+  );
+  const [orderingValue, setOrderingValue] = useState(
+    localStorage.getItem("orderingValue") || "priority"
+  );
   const [apiData, setApiData] = useState("");
   const toggleDialog = () => {
     setDialogOpen(!isDialogOpen);
@@ -21,14 +26,17 @@ function App() {
   };
   const url = "https://api.quicksell.co/v1/internal/frontend-assignment";
   async function fetchData() {
-    // setLoading(true);
     const { data } = await axios.get(url);
     setApiData(data);
-    // setLoading(false);
   }
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("groupingValue", groupingValue);
+    localStorage.setItem("orderingValue", orderingValue);
+  }, [groupingValue, orderingValue]);
 
   return (
     <>
