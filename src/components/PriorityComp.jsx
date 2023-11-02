@@ -30,7 +30,7 @@ const PriorityComp = ({ data, filterValue}) => {
           <div className="main-card">
             <div className="main-card-header">
               <div className="header-left">
-                <img src={`assets/${value}.png`} className="icon" />
+                <img src={`assets/${value.toLowerCase()}.png`} className="icon" />
                 <div>{value}</div>
                 <div>{taskCardCount}</div>
               </div>

@@ -20,7 +20,7 @@ const TaskCard = ({ id, title, tag, availability, priority, userId }) => {
       </div>
       <div className="tag-div">
       {priority && <img
-            src={`assets/${priorityArray[priority]}.png`}
+            src={`assets/${priorityArray[priority].toLowerCase()}.png`}
             className="priority-icon"
           />}
         <div className="tag">
