@@ -40,13 +40,12 @@ function App() {
   return (
     <>
       <div className="navbar">
-        <div className="display-button">
+        <div className="display-button arrow-down" onClick={toggleDialog}>
           <img src="assets/filter.png" id="filter-icon" />
-          <div>Display</div>
+          <div >Display</div>
           <img
             src="assets/arrow-down.png"
             id="down-icon"
-            onClick={toggleDialog}
           />
         </div>
         {isDialogOpen && (

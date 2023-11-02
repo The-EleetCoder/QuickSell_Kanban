@@ -76,3 +76,13 @@
     border: 1px solid grey;
     border-radius: 1rem;
 }
+
+.id-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-icon{
+    width: 23px;
+}

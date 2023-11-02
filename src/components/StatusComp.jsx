@@ -28,7 +28,7 @@ const StatusComp = ({ data, filterValue }) => {
           <div className="main-card">
             <div className="main-card-header">
               <div className="header-left">
-                <img src="assets/signal-solid.svg" className="icon" />
+                <img src={`assets/${value}.png`} className="icon" />
                 <div>{value}</div>
                 <div>{taskCardCount}</div>
               </div>
@@ -50,6 +50,7 @@ const StatusComp = ({ data, filterValue }) => {
                     title={ticket.title}
                     tag={ticket.tag[0]}
                     priority={ticket.priority}
+                    userId={ticket.userId}
                   />
                 </div>
               );

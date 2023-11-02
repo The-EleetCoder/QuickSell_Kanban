@@ -52,6 +52,7 @@ const PriorityComp = ({ data, filterValue}) => {
                     title={ticket.title}
                     tag={ticket.tag[0]}
                     availability={availabilityObj[ticket.userId]}
+                    userId={ticket.userId}
                   />
                 </div>
               );

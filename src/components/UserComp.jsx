@@ -26,7 +26,7 @@ const UserComp = ({ data, filterValue }) => {
           <div className="main-card">
             <div className="main-card-header">
               <div className="header-left">
-                <img src="assets/signal-solid.svg" className="icon" />
+                <img src={`assets/${user.id}.png`} className="icon"/>
                 <div>{user.name}</div>
                 <div>{taskCardCount}</div>
               </div>
