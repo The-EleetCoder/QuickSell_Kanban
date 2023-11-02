@@ -2,11 +2,12 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import StatusComp from "./components/StatusComp";
 import axios from "axios";
+import UserComp from "./components/UserComp";
 
 function App() {
   const [isDialogOpen, setDialogOpen] = useState(false);
-  const [groupingValue, setGroupingValue] = useState("status");
-  const [orderingValue, setOrderingValue] = useState("Priority");
+  const [groupingValue, setGroupingValue] = useState("user");
+  const [orderingValue, setOrderingValue] = useState("priority");
   const [apiData, setApiData] = useState("");
   const toggleDialog = () => {
     setDialogOpen(!isDialogOpen);
@@ -78,7 +79,7 @@ function App() {
       </div>
 
       <div className="container">
-        {groupingValue == "status" ? <StatusComp data={apiData} /> : "nothing here"}
+        {groupingValue == "status" ? <StatusComp data={apiData} /> : groupingValue == "user" ? <UserComp data={apiData}/> : "nothing here"}
       </div>
     </>
   );
