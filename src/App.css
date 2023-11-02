@@ -72,3 +72,9 @@
 .label-text{
     color: grey
 }
+
+.container{
+    width: 96%;
+    margin: 0 auto;
+    margin-top: 1.5rem;
+}

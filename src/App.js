@@ -1,16 +1,33 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import StatusComp from "./components/StatusComp";
+import axios from "axios";
 
 function App() {
   const [isDialogOpen, setDialogOpen] = useState(false);
-  const [value, setValue] = useState("status");
+  const [groupingValue, setGroupingValue] = useState("status");
+  const [orderingValue, setOrderingValue] = useState("Priority");
+  const [apiData, setApiData] = useState("");
   const toggleDialog = () => {
     setDialogOpen(!isDialogOpen);
   };
-  const valueHandler = (event) => {
-    console.log(event.target.value);
-    setValue(event.target.value);
+  const groupingValueHandler = (event) => {
+    setGroupingValue(event.target.value);
   };
+  const orderingValueHandler = (event) => {
+    setOrderingValue(event.target.value);
+  };
+  const url = "https://api.quicksell.co/v1/internal/frontend-assignment";
+  async function fetchData() {
+    // setLoading(true);
+    const { data } = await axios.get(url);
+    setApiData(data);
+    // setLoading(false);
+  }
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <>
       <div className="navbar">
@@ -32,8 +49,8 @@ function App() {
               <select
                 name="grouping"
                 id="grouping"
-                value={value}
-                onChange={valueHandler}
+                value={groupingValue}
+                onChange={groupingValueHandler}
                 className="dropdown-select"
               >
                 <option value="status">Status</option>
@@ -49,8 +66,8 @@ function App() {
                 name="ordering"
                 id="ordering"
                 className="dropdown-select"
-                value={value}
-                onChange={valueHandler}
+                value={orderingValue}
+                onChange={orderingValueHandler}
               >
                 <option value="priority">Priority</option>
                 <option value="title">Title</option>
@@ -58,6 +75,10 @@ function App() {
             </div>
           </div>
         )}
+      </div>
+
+      <div className="container">
+        {groupingValue == "status" ? <StatusComp data={apiData} /> : "nothing here"}
       </div>
     </>
   );
