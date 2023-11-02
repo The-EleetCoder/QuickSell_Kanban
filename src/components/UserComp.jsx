@@ -2,12 +2,25 @@ import React from "react";
 import "./UserComp.css";
 import TaskCard from "./TaskCard";
 
-const UserComp = ({ data }) => {
-  console.log({ data });
+const UserComp = ({ data, filterValue }) => {
+  const sortData = (arr) => {
+    arr.sort((a, b) => {
+      if (filterValue == "priority") {
+        return b.priority - a.priority;
+      } else if (filterValue == "title") {
+        return a.title.localeCompare(b.title);
+      }
+      return 0;
+    });
+    return arr;
+  };
+
   return (
     <div className="container">
       {data.users?.map((user) => {
-        const matchingTickets = data.tickets?.filter((ticket) => ticket.userId === user.id) || [];
+        let arr = [];
+        const matchingTickets =
+          data.tickets?.filter((ticket) => ticket.userId === user.id) || [];
         const taskCardCount = matchingTickets.length;
         return (
           <div className="main-card">
@@ -23,15 +36,22 @@ const UserComp = ({ data }) => {
               </div>
             </div>
             {data.tickets?.map((ticket) => {
-            if (ticket?.userId == user.id) {
+              if (ticket?.userId == user.id) {
+                arr.push(ticket);
+              }
+            })}
+            {sortData(arr).map((ticket) => {
               return (
                 <div className="main-card-body">
-                {console.log({ticket})}
-                  <TaskCard id={ticket.id} title={ticket.title} tag={ticket.tag[0]} />
+                  {console.log({ ticket })}
+                  <TaskCard
+                    id={ticket.id}
+                    title={ticket.title}
+                    tag={ticket.tag[0]}
+                  />
                 </div>
               );
-            }
-          })}
+            })}
           </div>
         );
       })}

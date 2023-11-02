@@ -1,0 +1,37 @@
+.container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-card{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.main-card-header{
+    display: flex;
+    width: 16rem;
+    justify-content: space-between;
+}
+
+.header-left{
+    display: flex;
+    gap: 0.7rem;
+}
+
+.header-right{
+    display: flex;
+    gap: 1.1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.three-dots{
+    margin-top: -8px;
+}
+
+.icon{
+    width: 17px;
+    height: 20px;
+}
