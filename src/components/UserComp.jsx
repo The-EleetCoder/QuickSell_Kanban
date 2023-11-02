@@ -7,13 +7,15 @@ const UserComp = ({ data }) => {
   return (
     <div className="container">
       {data.users?.map((user) => {
+        const matchingTickets = data.tickets?.filter((ticket) => ticket.userId === user.id) || [];
+        const taskCardCount = matchingTickets.length;
         return (
           <div className="main-card">
             <div className="main-card-header">
               <div className="header-left">
                 <img src="assets/signal-solid.svg" className="icon" />
                 <div>{user.name}</div>
-                <div>0</div>
+                <div>{taskCardCount}</div>
               </div>
               <div className="header-right">
                 <div>+</div>

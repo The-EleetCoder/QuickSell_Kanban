@@ -3,10 +3,11 @@ import { useState, useEffect } from "react";
 import StatusComp from "./components/StatusComp";
 import axios from "axios";
 import UserComp from "./components/UserComp";
+import PriorityComp from "./components/PriorityComp";
 
 function App() {
   const [isDialogOpen, setDialogOpen] = useState(false);
-  const [groupingValue, setGroupingValue] = useState("user");
+  const [groupingValue, setGroupingValue] = useState("status");
   const [orderingValue, setOrderingValue] = useState("priority");
   const [apiData, setApiData] = useState("");
   const toggleDialog = () => {
@@ -79,7 +80,13 @@ function App() {
       </div>
 
       <div className="container">
-        {groupingValue == "status" ? <StatusComp data={apiData} /> : groupingValue == "user" ? <UserComp data={apiData}/> : "nothing here"}
+        {groupingValue == "status" ? (
+          <StatusComp data={apiData} filterValue={orderingValue} />
+        ) : groupingValue == "user" ? (
+          <UserComp data={apiData} filterValue={orderingValue} />
+        ) : (
+          <PriorityComp data={apiData} filterValue={orderingValue} />
+        )}
       </div>
     </>
   );

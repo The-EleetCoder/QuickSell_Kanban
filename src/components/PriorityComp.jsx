@@ -1,14 +1,13 @@
 import React from "react";
 import TaskCard from "./TaskCard";
-import "./StatusComp.css";
+import "./PriorityComp.css";
 
-const StatusComp = ({ data }) => {
-  const statusArray = ["Backlog", "Todo", "In progress", "Done", "Cancelled"];
-
+const PriorityComp = ({ data }) => {
+  const priorityArray = ["No priority", "Low", "Medium", "High", "Urgent"];
   return (
     <div className="container">
-      {statusArray.map((value) => {
-        const matchingTickets = data.tickets?.filter((ticket) => ticket.status === value) || [];
+      {priorityArray.map((value, index) => {
+        const matchingTickets = data.tickets?.filter(ticket => ticket.priority === index) || [];
         const taskCardCount = matchingTickets.length;
         return (
           <div className="main-card">
@@ -24,7 +23,7 @@ const StatusComp = ({ data }) => {
               </div>
             </div>
             {data.tickets?.map((ticket) => {
-              if (ticket?.status == value) {
+              if (ticket?.priority == index) {
                 return (
                   <div className="main-card-body">
                     {console.log({ ticket })}
@@ -44,4 +43,4 @@ const StatusComp = ({ data }) => {
   );
 };
 
-export default StatusComp;
+export default PriorityComp;
